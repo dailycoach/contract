@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>코칭계약서</title>
+  <style>
+    :root {
+      --doc-border: #d1d5db;
+      --doc-heading: #111827;
+      --doc-text: #111827;
+      --doc-muted: #4b5563;
+      --doc-table-border: #9ca3af;
+      --doc-bg: #f9fafb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--doc-bg);
+    }
+
+    body {
+      font-family: "Malgun Gothic", "Apple SD Gothic Neo",
+        "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--doc-text);
+    }
+
+    .page {
+      max-width: 800px;
+      margin: 24px auto;
+      padding: 32px 40px 48px;
+      background: #ffffff;
+      border: 1px solid var(--doc-border);
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .title h1 {
+      margin: 0 0 4px;
+      font-size: 22px;
+      letter-spacing: 0.02em;
+      color: var(--doc-heading);
+    }
+
+    .title .subtitle {
+      font-size: 13px;
+      color: var(--doc-muted);
+    }
+
+    h2.section-title {
+      font-size: 14px;
+      margin: 18px 0 6px;
+      font-weight: 600;
+    }
+
+    h2.article-title {
+      font-size: 15px;
+      margin: 18px 0 8px;
+      padding-top: 6px;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    p {
+      font-size: 13px;
+      line-height: 1.7;
+      margin: 4px 0 10px;
+      white-space: pre-line;
+    }
+
+    .info-caption {
+      font-size: 12px;
+      color: var(--doc-muted);
+      margin-bottom: 4px;
+    }
+
+    table.basic-info {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .basic-info th,
+    .basic-info td {
+      border: 1px solid var(--doc-table-border);
+      padding: 6px 8px;
+      vertical-align: top;
+    }
+
+    .basic-info th {
+      width: 180px;
+      background: #f9fafb;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    .basic-info td {
+      height: 30px;
+    }
+
+    .field-input {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid #cbd5e1;
+      padding: 2px 2px;
+      font-size: 13px;
+      font-family: inherit;
+      background: transparent;
+      outline: none;
+    }
+
+    .field-textarea {
+      width: 100%;
+      border: 1px solid #cbd5e1;
+      padding: 4px 4px;
+      font-size: 13px;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 40px;
+      box-sizing: border-box;
+      background: transparent;
+      outline: none;
+    }
+
+    .sign-block {
+      margin-top: 20px;
+      font-size: 13px;
+      line-height: 1.8;
+      white-space: pre-line;
+    }
+
+    .sign-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-top: 6px;
+    }
+
+    .sign-label {
+      font-size: 13px;
+      margin-right: 4px;
+    }
+
+    .sign-input {
+      border: none;
+      border-bottom: 1px solid #cbd5e1;
+      padding: 2px 2px;
+      font-size: 13px;
+      font-family: inherit;
+      min-width: 120px;
+      background: transparent;
+      outline: none;
+    }
+
+    .signature-upload-block {
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .upload-control {
+      font-size: 12px;
+    }
+
+    .signature-preview {
+      margin-top: 4px;
+      max-width: 240px;
+      max-height: 120px;
+      border: 1px solid #e5e7eb;
+      padding: 4px;
+      display: none; /* 처음엔 안 보이게 */
+    }
+
+    .signature-preview img {
+      max-width: 100%;
+      max-height: 110px;
+      display: block;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+      }
+      .page {
+        box-shadow: none;
+        margin: 0;
+        border: none;
+        width: 100%;
+        max-width: 100%;
+        padding: 20mm 22mm 24mm;
+      }
+      .field-input,
+      .sign-input {
+        border-bottom: 1px solid #000000;
+      }
+      .field-textarea {
+        border: 1px solid #000000;
+      }
+      .upload-control {
+        display: none !important; /* 업로드 버튼은 인쇄 시 숨김 */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="title">
+      <h1>코칭계약서</h1>
+      <div class="subtitle">Coaching Agreement</div>
+    </header>
+
+    <!-- Ⅰ. 기본 정보 -->
+    <section>
+      <h2 class="section-title">Ⅰ. 기본 정보</h2>
+
+      <div class="info-caption">[코치 작성란]</div>
+      <table class="basic-info">
+        <tr>
+          <th>코치 성명</th>
+          <td><input type="text" class="field-input" placeholder=""></td>
+        </tr>
+        <tr>
+          <th>코치 소속/브랜드</th>
+          <td><input type="text" class="field-input" placeholder=""></td>
+        </tr>
+        <tr>
+          <th>코치 연락처</th>
+          <td><input type="text" class="field-input" placeholder="전화번호 또는 이메일"></td>
+        </tr>
+        <tr>
+          <th>코칭 계좌 정보<br>(은행명 / 예금주 / 계좌번호)</th>
+          <td><textarea class="field-textarea" placeholder=""></textarea></td>
+        </tr>
+      </table>
+
+      <div class="info-caption">[클라이언트 작성란]</div>
+      <table class="basic-info">
+        <tr>
+          <th>클라이언트 성명</th>
+          <td><input type="text" class="field-input" placeholder=""></td>
+        </tr>
+        <tr>
+          <th>연락처<br>(전화번호 또는 이메일)</th>
+          <td><input type="text" class="field-input" placeholder=""></td>
+        </tr>
+        <tr>
+          <th>생년월일</th>
+          <td><input type="text" class="field-input" placeholder="예: 1990-01-01"></td>
+        </tr>
+        <tr>
+          <th>주소 (선택)</th>
+          <td><textarea class="field-textarea" placeholder=""></textarea></td>
+        </tr>
+      </table>
+
+      <div class="info-caption">[프로그램 및 계약 내용 (상호 확인란)]</div>
+      <table class="basic-info">
+        <tr>
+          <th>계약 체결일</th>
+          <td><input type="text" class="field-input" placeholder="예: 2020-00-00"></td>
+        </tr>
+        <tr>
+          <th>코칭 이용 가능 기간</th>
+          <td><input type="text" class="field-input" placeholder="예: 결제일로부터 6개월 이내"></td>
+        </tr>
+        <tr>
+          <th>프로그램 요약</th>
+          <td><textarea class="field-textarea" placeholder="예: 라이프코칭 12회기 / 회기당 60분 / 주 1회 또는 격주 1회"></textarea></td>
+        </tr>
+        <tr>
+          <th>수수료 및 결제 방식</th>
+          <td><textarea class="field-textarea" placeholder="예: 총 ○○원 (회당 ○○원), 일시 결제 / ○회 분할 결제"></textarea></td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- 조항 -->
+    <section>
+      <h2 class="article-title">제1조 (계약 당사자)</h2>
+      <p>
+1. 본 계약의 당사자는 상단 [코치 작성란] 및 [클라이언트 작성란]에 기재된 코치(이하 "코치")와
+   클라이언트(이하 "클라이언트")이다.
+
+2. 코치와 클라이언트는 상단 표에 기재된 기본 정보 및 프로그램·수수료 내용이 사실과 부합하도록 정확히 작성하며,
+   변경 사항이 있을 경우 지체 없이 서로에게 알린다.
+      </p>
+
+      <h2 class="article-title">제2조 (코칭의 정의 및 범위)</h2>
+      <p>
+1. 코칭(이하 "코칭")은 코치와 클라이언트가 파트너십을 맺고, 대화를 통해 클라이언트의 인식과 선택을
+   확장하도록 돕는 과정이다. 코치는 질문, 피드백, 관찰 등을 통해 클라이언트가 스스로 목표와 방향을 정리하고
+   행동을 선택하도록 지원한다.
+
+2. 코칭은 다음과 같은 서비스와 구별된다.
+   1) 심리상담·심리치료: 정신건강 문제, 트라우마, 진단 및 치료를 주된 목적으로 하는 전문 서비스
+   2) 의료 서비스: 신체·정신 질환에 대한 진단, 처방, 치료를 제공하는 의료 행위
+   3) 법률·세무·투자 자문: 법률, 세무, 투자에 대한 전문적 판단과 조언 제공
+   4) 멘토링·컨설팅: 노하우와 정답을 직접 제시하거나 지시하는 서비스
+
+3. 코칭은 위 서비스를 대체하지 않으며, 코치는 필요하다고 판단되는 경우 관련 전문 기관 또는 전문가 이용을
+   안내하거나 권유할 수 있다.
+      </p>
+
+      <h2 class="article-title">제3조 (프로그램 구조 및 계약 기간)</h2>
+      <p>
+1. 코칭 프로그램의 기본 구조는 상단 [프로그램 및 계약 내용]에 기재된 회기 수, 회기당 시간, 진행 빈도,
+   전체 기간, 방식(온라인/대면/혼합 등)에 따른다.
+
+2. 코칭 이용 가능 기간은 상단에 기재된 기간을 원칙으로 하며, 해당 기간이 지나면 잔여 회기가 있더라도
+   자동으로 소멸될 수 있다. 이 경우 소멸된 회기에 대해서는 별도의 환불이 이루어지지 않을 수 있다.
+
+3. 초기 계약 종료 후 재계약을 진행할 경우, 당시 상황과 목표에 따라 회기 수·진행 빈도·기간 등을 다시 협의하여
+   정하며, 새로운 합의 내용을 별도로 기록한다.
+      </p>
+
+      <h2 class="article-title">제4조 (수수료, 결제 및 환불)</h2>
+      <p>
+1. 코칭 수수료 및 결제 방식은 상단 [프로그램 및 계약 내용]에 기재된 내용과 코치가 사전 안내한 기준에 따른다.
+
+2. 클라이언트는 합의된 일정에 따라 수수료를 지급하며, 전체 선불 결제 또는 분할 결제 방식 등을 선택할 수 있다.
+   분할 결제 시 분납 일정 및 금액은 사전에 합의한다.
+
+3. 클라이언트가 코칭을 중도에 해지하는 경우, 이미 진행된 회기에 해당하는 비용은 환불 대상에서 제외되며,
+   잔여 회기에 대한 환불 여부 및 방식은 코치의 취소·환불 정책 및 관련 안내에 따른다.
+
+4. 코치는 요청 시 영수증 또는 필요에 따라 세금계산서·현금영수증 등 적절한 결제 증빙을 제공할 수 있다.
+      </p>
+
+      <h2 class="article-title">제5조 (일정 조율, 변경, 지각 및 결석)</h2>
+      <p>
+1. 코칭 세션 일정은 코치와 클라이언트가 합의한 방법(메신저, 이메일, 예약 시스템 등)을 통해 사전에 조율한다.
+
+2. 클라이언트는 부득이하게 일정을 변경하거나 취소해야 할 경우, 원칙적으로 세션 시작 24시간 전
+   까지 코치에게 요청해야 한다.
+
+3. 정해진 기한 이후의 변경 요청, 당일 취소 또는 무단결석의 경우, 해당 회기는 진행된 것으로 간주되어
+   회기 수에서 차감될 수 있으며, 이미 납부한 수수료는 반환되지 않을 수 있다.
+
+4. 갑작스러운 질병, 사고, 천재지변 등 불가항력적인 사유가 있는 경우, 코치와 클라이언트는 상호 협의를 통해
+   예외적으로 일정을 조정할 수 있다.
+
+5. 클라이언트가 세션 시작 시간에 지각하는 경우, 세션 종료 시각은 기존에 합의한 종료 시각을 기준으로 하며,
+   지각으로 인한 시간 손실에 대해서는 별도의 연장 보장을 하지 않는 것을 원칙으로 한다.
+      </p>
+
+      <h2 class="article-title">제6조 (비밀유지 및 개인정보)</h2>
+      <p>
+1. 코치는 코칭 과정에서 알게 된 클라이언트의 개인정보와 대화 내용을 제3자에게 누설하지 않으며,
+   관련 윤리 기준과 개인정보 보호 관련 법령을 준수한다.
+
+2. 다음 각 호의 경우에는 예외적으로 관련 기관 또는 제3자에게 정보를 제공할 수 있다.
+   1) 법원의 명령, 수사기관의 적법한 요청 등 법적 의무가 있는 경우
+   2) 클라이언트 또는 타인의 생명·신체에 중대한 위해가 발생할 급박한 위험이 있다고 합리적으로 판단되는 경우
+
+3. 코칭 세션의 주요 내용 및 진행 경과 등은 코치의 전문성 향상과 서비스 품질 유지를 위해 기록할 수 있으며,
+   해당 기록과 개인정보는 안전한 방식으로 보관하고, 관련 법령 및 코치의 내부 정책에 따라 보존·파기한다.
+
+4. 코치 자격 취득·유지를 위해 코칭 시간(세션 일자, 시간, 회기 수 등)을 인증기관에 증빙해야 하는 경우,
+   클라이언트의 성명, 연락처, 세션 일시 등 최소한의 정보가 제출될 수 있으며, 코치는 필요한 범위 내에서만
+   정보를 제공한다.
+
+5. 세션 녹음·녹화, 상세 전사본 등을 코칭 수련, 슈퍼비전, 자격 심사 등 목적으로 활용하고자 할 때에는,
+   코치는 별도의 서면 또는 전자 동의를 받고, 동의 여부에 따라 클라이언트에게 불이익이 발생하지 않도록 한다.
+      </p>
+
+      <h2 class="article-title">제7조 (코치·클라이언트의 역할 및 코칭의 한계)</h2>
+      <p>
+1. 코치는 클라이언트의 목표와 주제를 중심으로 질문, 피드백, 관찰, 요약 등을 제공하며,
+   클라이언트가 스스로 인식과 선택을 정리하고 행동을 설계하도록 돕는다.
+
+2. 클라이언트는 코칭의 주제와 목표, 기대하는 바를 가능한 솔직하게 나누고, 세션에 성실히 참여하며,
+   세션에서 합의한 실험·행동·과제를 자신의 책임 하에 시도한다.
+
+3. 코칭은 특정 결과(승진, 시험 합격, 관계 회복, 소득 증가 등)를 보장하지 않으며,
+   최종적인 의사결정과 실행에 대한 책임은 클라이언트에게 있다.
+
+4. 자해·타해 충동, 극심한 우울·불안, 중독, 폭력·학대, 법적 분쟁 등 고위험 상황이나 전문적 판단이
+   필요한 사안이 주요 주제일 경우, 코치는 코칭만으로는 충분하지 않다고 판단하고,
+   심리상담, 의료기관, 법률·재정 전문가, 공적 지원기관 등 보다 적합한 자원의 이용을 권유할 수 있다.
+
+5. 위와 같은 사안이 지속되거나 코칭의 범위를 명백히 벗어나는 경우, 코치는 코칭을 일시 중단하거나
+   종료하고, 다른 자원을 안내하는 것이 필요하다고 판단할 수 있다.
+      </p>
+
+      <h2 class="article-title">제8조 (분쟁 해결 및 준거법 · 동의 및 서명)</h2>
+      <p>
+1. 코치와 클라이언트는 본 계약과 관련하여 의견 차이나 분쟁이 발생한 경우, 우선 대화를 통해
+   성실하게 해결을 시도한다.
+
+2. 그럼에도 불구하고 분쟁이 해결되지 않는 경우, 관련 법령 및 관할 법원의 절차에 따라 해결하며,
+   본 계약의 해석과 적용에는 대한민국 법을 준거법으로 한다.
+      </p>
+
+      <div class="sign-block">
+        위 계약서의 내용을 충분히 읽고 이해하였으며, 질문할 기회를 가졌고, 이에 동의한다.
+
+        <div style="margin-top:16px; font-weight:600;">코치</div>
+        <div class="sign-row">
+          <span class="sign-label">성명:</span>
+          <input type="text" class="sign-input">
+          <span class="sign-label">날짜:</span>
+          <input type="text" class="sign-input" placeholder="예: 2020-00-00">
+        </div>
+        <div class="signature-upload-block">
+          <div class="upload-control">
+            전자서명 이미지 업로드:
+            <input type="file" accept="image/*" id="coach-sign-upload">
+          </div>
+          <div class="signature-preview" id="coach-sign-preview">
+            <img id="coach-sign-img" alt="코치 전자서명 미리보기">
+          </div>
+        </div>
+
+        <div style="margin-top:16px; font-weight:600;">클라이언트</div>
+        <div class="sign-row">
+          <span class="sign-label">성명:</span>
+          <input type="text" class="sign-input">
+          <span class="sign-label">날짜:</span>
+          <input type="text" class="sign-input" placeholder="예: 2020-00-00">
+        </div>
+        <div class="signature-upload-block">
+          <div class="upload-control">
+            전자서명 이미지 업로드:
+            <input type="file" accept="image/*" id="client-sign-upload">
+          </div>
+          <div class="signature-preview" id="client-sign-preview">
+            <img id="client-sign-img" alt="클라이언트 전자서명 미리보기">
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function setupSignatureUpload(inputId, previewContainerId, imgId) {
+      const input = document.getElementById(inputId);
+      const previewContainer = document.getElementById(previewContainerId);
+      const img = document.getElementById(imgId);
+
+      if (!input) return;
+
+      input.addEventListener('change', function (event) {
+        const file = event.target.files && event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          img.src = e.target.result;
+          previewContainer.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    setupSignatureUpload('coach-sign-upload', 'coach-sign-preview', 'coach-sign-img');
+    setupSignatureUpload('client-sign-upload', 'client-sign-preview', 'client-sign-img');
+  </script>
+</body>
+</html>
